@@ -1,11 +1,10 @@
-package com.vlkan.maven.plugins.quasar;
+package com.github.fromage.quasi.maven;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.Collections;
@@ -25,17 +24,17 @@ import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
 import org.apache.maven.project.MavenProject;
 
-import co.paralleluniverse.fibers.instrument.Log;
-import co.paralleluniverse.fibers.instrument.LogLevel;
-import co.paralleluniverse.fibers.instrument.QuasarInstrumentor;
+import com.github.fromage.quasi.fibers.instrument.Log;
+import com.github.fromage.quasi.fibers.instrument.LogLevel;
+import com.github.fromage.quasi.fibers.instrument.QuasiInstrumentor;
 
 /**
- * Quasar Ahead-of-Time instrumentor Mojo.
+ * Quasi Ahead-of-Time instrumentor Mojo.
  */
 @Mojo(name = "instrument", 
     defaultPhase = LifecyclePhase.PROCESS_CLASSES, 
     requiresDependencyResolution = ResolutionScope.COMPILE)
-public class QuasarInstrumentorMojo extends AbstractMojo {
+public class QuasiInstrumentorMojo extends AbstractMojo {
     /**
      * Build directory path.
      */
@@ -77,13 +76,13 @@ public class QuasarInstrumentorMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException {
-        getLog().info("Instrumenting Quasar classes...");
+        getLog().info("Instrumenting Quasi classes...");
 
         if (buildDirectory == null || !buildDirectory.isDirectory())
             throw new MojoExecutionException("Invalid build directory: " + buildDirectory);
 
-        // Create a Quasar instrumentor.
-        final QuasarInstrumentor instrumentor;
+        // Create a Quasi instrumentor.
+        final QuasiInstrumentor instrumentor;
         final ClassLoader cl;
         try {
             List<String> elements = project.getTestClasspathElements();
@@ -92,7 +91,7 @@ public class QuasarInstrumentorMojo extends AbstractMojo {
                 urls[i] = new File(elements.get(i)).toURI().toURL();
             }
             cl = new URLClassLoader(urls, getClass().getClassLoader());
-            instrumentor = new QuasarInstrumentor(true);
+            instrumentor = new QuasiInstrumentor(true);
         } catch (MalformedURLException e) {
             throw new AssertionError(e);
         } catch (DependencyResolutionRequiredException e) {
@@ -167,13 +166,13 @@ public class QuasarInstrumentorMojo extends AbstractMojo {
         getLog().error(s, e);
     }
 
-    public void instrumentClasses(QuasarInstrumentor instrumentor, ClassLoader cl, Map<String, File> classes) throws MojoExecutionException {
+    public void instrumentClasses(QuasiInstrumentor instrumentor, ClassLoader cl, Map<String, File> classes) throws MojoExecutionException {
         logInfo("Instrumenting %d classes...", classes.size());
         for (Entry<String, File> entry : classes.entrySet())
             instrumentClass(instrumentor, cl, entry.getKey(), entry.getValue());
     }
 
-    private void instrumentClass(QuasarInstrumentor instrumentor, ClassLoader cl, String name, File file) throws MojoExecutionException {
+    private void instrumentClass(QuasiInstrumentor instrumentor, ClassLoader cl, String name, File file) throws MojoExecutionException {
         if (!instrumentor.shouldInstrument(name))
             return;
         try {

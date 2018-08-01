@@ -3,20 +3,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.vlkan</groupId>
-    <artifactId>quasar-maven-plugin</artifactId>
+    <groupId>com.github.fromage.quasi</groupId>
+    <artifactId>quasi-maven-plugin</artifactId>
     <packaging>maven-plugin</packaging>
-    <version>0.7.9-SNAPSHOT</version>
+    <version>0.7.10-SNAPSHOT</version>
     <name>Quasar Maven Plugin</name>
     <description>
-        Quasar is a Java library that provides high-performance lightweight
-        threads, Go-like channels, Erlang-like actors, and other asynchronous
-        programming tools. Quasar fibers rely on bytecode instrumentation. This
+        Quasi is a Java library that provides high-performance lightweight
+        threads, forked from Quasar. Quasi fibers rely on bytecode instrumentation. This
         can be done at classloading time via a Java Agent, or at compilation
-        time. This project ships a Maven plugin for the ahead-of-time Quasar
+        time. This project ships a Maven plugin for the ahead-of-time Quasi
         instrumentation of the compiled class files.
     </description>
-    <url>https://github.com/vy/quasar-maven-plugin</url>
+    <url>https://github.com/fromage/quasi-maven-plugin</url>
 
     <licenses>
         <license>
@@ -42,9 +41,9 @@
     </developers>
 
     <scm>
-        <url>http://github.com/vy/quasar-maven-plugin</url>
-        <connection>scm:git:git://github.com/vy/quasar-maven-plugin.git</connection>
-        <developerConnection>scm:git:git://github.com/vy/quasar-maven-plugin.git</developerConnection>
+        <url>http://github.com/fromage/quasi-maven-plugin</url>
+        <connection>scm:git:git://github.com/fromage/quasi-maven-plugin.git</connection>
+        <developerConnection>scm:git:git://github.com/fromage/quasi-maven-plugin.git</developerConnection>
     </scm>
 
     <distributionManagement>
@@ -63,11 +62,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.7</java.version>
-        <quasar.version>0.7.9</quasar.version>
+        <quasi.version>0.7.10-SNAPSHOT</quasi.version>
         <maven-api.version>3.3.3</maven-api.version>
         <maven-annotations.version>3.3</maven-annotations.version>
         <plugin.maven-compiler.version>3.3</plugin.maven-compiler.version>
-        <plugin.maven-plugin.version>3.4</plugin.maven-plugin.version>
+        <plugin.maven-plugin.version>3.5.2</plugin.maven-plugin.version>
         <plugin.gpg.version>1.6</plugin.gpg.version>
         <plugin.javadoc.version>2.10.3</plugin.javadoc.version>
         <plugin.source.version>2.4</plugin.source.version>
@@ -90,9 +89,9 @@
             <version>${maven-annotations.version}</version>
         </dependency>
         <dependency>
-            <groupId>co.paralleluniverse</groupId>
-            <artifactId>quasar-core</artifactId>
-            <version>${quasar.version}</version>
+            <groupId>com.github.fromage.quasi</groupId>
+            <artifactId>quasi-core</artifactId>
+            <version>${quasi.version}</version>
         </dependency>
     </dependencies>
 
@@ -136,7 +135,7 @@
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>${plugin.maven-plugin.version}</version>
                 <configuration>
-                    <goalPrefix>quasar</goalPrefix>
+                    <goalPrefix>quasi</goalPrefix>
                 </configuration>
                 <executions>
                     <execution>

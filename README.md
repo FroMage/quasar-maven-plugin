@@ -1,8 +1,8 @@
-[Quasar](http://docs.paralleluniverse.co/quasar/) is a Java library that
-provides high-performance lightweight threads, Go-like channels, Erlang-like
-actors, and other asynchronous programming tools. Quasar fibers rely on bytecode
+[Quasi](http://github.com/fromage/quasi) is a Java library that
+provides high-performance lightweight threads, via a fork of the Quasar
+library. Quasi fibers rely on bytecode
 instrumentation. This can be done at classloading time via a Java Agent, or at
-compilation time. This project ships a Maven plugin for the ahead-of-time Quasar
+compilation time. This project ships a Maven plugin for the ahead-of-time Quasi
 instrumentation of the compiled class files.
 
 Usage
@@ -11,8 +11,8 @@ Usage
 Configure the plugin to instrument the code:
 
     <plugin>
-        <groupId>com.vlkan</groupId>
-        <artifactId>quasar-maven-plugin</artifactId>
+        <groupId>com.github.fromage.quasi</groupId>
+        <artifactId>quasi-maven-plugin</artifactId>
         <version>0.7.5</version>
         <configuration>
             <check>true</check>
