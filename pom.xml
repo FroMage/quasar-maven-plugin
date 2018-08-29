@@ -41,9 +41,10 @@
     </developers>
 
     <scm>
-        <url>http://github.com/fromage/quasi-maven-plugin</url>
-        <connection>scm:git:git://github.com/fromage/quasi-maven-plugin.git</connection>
-        <developerConnection>scm:git:git://github.com/fromage/quasi-maven-plugin.git</developerConnection>
+        <url>http://github.com/FroMage/quasi-maven-plugin</url>
+        <connection>scm:git:git://github.com/FroMage/quasi-maven-plugin.git</connection>
+        <developerConnection>scm:git:git://github.com/FroMage/quasi-maven-plugin.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
